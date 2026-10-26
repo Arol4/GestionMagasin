@@ -5,6 +5,8 @@
 package gestionmagasin;
 import gestionmagasin.Models.DatabaseConnection;
 import gestionmagasin.Vues.VueGestionMagasin;
+import gestionmagasin.Models.Marchandise;
+import gestionmagasin.Controllers.ControllerMarchandise;
 /**
  *
  * @author arold
@@ -16,9 +18,15 @@ public class GestionMagasin {
      */
     public static void main(String[] args) {
         VueGestionMagasin fenetre = new VueGestionMagasin();
+        Marchandise marchandise = new Marchandise("Gilette Blade", "Big blade for airstyle", 2500, 4);
         fenetre.setVisible(true);
-        DatabaseConnection.getConnection();
-        DatabaseConnection.closeConnection();
+        try {
+            ControllerMarchandise.saveMarchandise(marchandise);
+            DatabaseConnection.closePool();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
     }
     
 }

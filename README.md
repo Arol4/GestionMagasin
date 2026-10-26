@@ -10,23 +10,23 @@ To implement this project on your local computer, you should follow rigorously t
 1. Open **MySQL Command Line Client** and enter your root password the connect to **MySQL Server** with **admin access**.
 2. Create a database with some tables with the following SQL code:
 ```SQL
-    CREATE DATABASE gestion_magasin;
+CREATE DATABASE gestion_magasin;
 
-    USE gestion_magasin;
+USE gestion_magasin;
 
-    CREATE TABLE marchandise(
-            id_marchandise INT NOT NULL,
+CREATE TABLE marchandise(
+            id_marchandise INT NOT NULL AUTO_INCREMENT,
+            nom VARCHAR(45) NOT NULL UNIQUE,
             designation VARCHAR(500) NOT NULL UNIQUE,
             prix_unitaire INT NOT NULL,
             qte_en_stock INT NOT NULL,
-            nom VARCHAR(45) NOT NULL UNIQUE,
 
             PRIMARY KEY(id_marchandise),
             CHECK(prix_unitaire > 0 AND qte_en_stock > 0)
     );
 
     CREATE TABLE responsable(
-            id_responsable INT NOT NULL,
+            id_responsable INT NOT NULL AUTO_INCREMENT,
             nom_responsable VARCHAR(45) NOT NULL,
             prenom_responsable VARCHAR(45) NOT NULL,
             telephone_responsable CHAR(9) NOT NULL,
@@ -38,7 +38,7 @@ To implement this project on your local computer, you should follow rigorously t
     );
 
     CREATE TABLE entree(
-            id_entree INT NOT NULL,
+            id_entree INT NOT NULL AUTO_INCREMENT,
             date_entree DATE NOT NULL DEFAULT (CURRENT_DATE),
             id_responsable INT NOT NULL,
 
@@ -47,7 +47,7 @@ To implement this project on your local computer, you should follow rigorously t
     );
 
     CREATE TABLE sortie(
-            id_sortie INT NOT NULL,
+            id_sortie INT NOT NULL AUTO_INCREMENT,
             date_sortie DATE NOT NULL DEFAULT (CURRENT_DATE),
             id_responsable INT NOT NULL,
 
